@@ -1,54 +1,263 @@
+:root {
+  --mos-red: #CE2A31;
+  --mos-dark: #1F1F1F;
+  --mos-gray: #787878;
+  --bg-color: #FFFFFF;
+  --mos-border: #E5E5E5;
+}
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--mos-dark);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- HEADER --- */
+header {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 100;
+}
+
+/* Основной хедер */
+.main-header {
+  padding: 15px 0;
+}
+
+.main-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Разносит лого и меню по краям */
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+/* Меню */
+.nav-menu ul {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-link {
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+  padding: 10px 0;
+  color: var(--mos-dark);
+}
+
+/* Стиль при наведении и активной ссылке */
+.nav-link:hover,
+.nav-link.active {
+  color: var(--mos-red);
+}
+
+/* Красная полоска снизу */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--mos-red);
+  transition: width 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* --- CONTENT --- */
+main {
+  flex: 1;
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.page-title {
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 300;
+}
+
+.content-box {
+  background: #fff;
+  border: 1px solid var(--mos-border);
+  border-radius: 8px;
+  padding: 40px;
+  min-height: 300px;
+}
+
+/* --- FOOTER --- */
+footer {
+  background-color: #fff;
+  border-top: 1px solid var(--mos-border);
+  font-size: 14px;
+}
+
+.footer-bottom {
+  background-color: #F9F9F9;
+  padding: 25px 0;
+  border-top: 1px solid var(--mos-border);
+}
+
+.footer-bottom .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright {
+  color: #999;
+  font-size: 12px;
+  max-width: 400px;
+}
+
+
+/* Контейнер калькулятора (карточка) */
+.calc-wrapper {
+  background-color: #FFFFFF;
+  width: fit-content;
+  padding: 25px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E5E5E5;
+  margin: 0 auto;
+  /* Центрирование */
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Экран результата */
+.result {
+  height: 70px;
+  /* Чуть выше */
+  margin-bottom: 20px;
+  padding: 0 20px;
+  background: var(--mos-dark);
+  /* Темный фон как на табло */
+  border-radius: 12px;
+  text-align: right;
+  color: #FFFFFF;
+  font-size: 2.5rem;
+  /* Крупнее шрифт */
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+}
+
+/* Сетка кнопок (используем Flex для рядов) */
+.calc-row {
+  display: flex;
+  gap: 12px;
+  /* Отступы между кнопками */
+  margin-bottom: 12px;
+}
+
+.calc-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Базовая кнопка (Цифры) */
 .my-btn {
-  margin-right: 5px;
-  margin-top: 5px;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  border: none;
-  background: #515151;
-  color: white;
-  font-size: 1.5rem;
-  font-family: Arial, Helvetica, sans-serif;
+  /* Круглые */
+  border: 1px solid transparent;
+  background: var(--mos-light-gray);
+  /* Светло-серый фон */
+  color: var(--mos-dark);
+  font-size: 1.4rem;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
-
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   user-select: none;
+  outline: none;
 }
 
-
+/* Ховер эффект для цифр */
 .my-btn:hover {
-  background: darkgray;
+  background: #E0E0E0;
+  transform: translateY(-1px);
 }
-
 
 .my-btn:active {
-  filter: brightness(130%);
+  background: #D0D0D0;
+  transform: translateY(1px);
 }
 
-
+/* Операторы ( / x - + = ) - Красные */
 .my-btn.primary {
-  background: #ff9801;
+  background: var(--mos-red);
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 1.6rem;
 }
 
+.my-btn.primary:hover {
+  background: #B02025;
+  /* Чуть темнее красный */
+  box-shadow: 0 4px 10px rgba(206, 42, 49, 0.3);
+}
 
+/* Вспомогательные ( C +/- % ) - Темно-серые */
 .my-btn.secondary {
-  background: #a6a6a6;
+  background: #FFFFFF;
+  border: 1px solid #D0D0D0;
+  color: var(--mos-dark);
+  font-size: 1.1rem;
 }
 
+.my-btn.secondary:hover {
+  background: var(--mos-dark);
+  color: #FFFFFF;
+  border-color: var(--mos-dark);
+}
 
+/* Кнопка "Равно" (execute) - широкая */
 .my-btn.execute {
-  border-radius: 34px;
-}
-
-
-.result {
-  width: 220px;
-  height: 50px;
-  margin-bottom: 15px;
-  padding-right: 10px;
-  background: rgb(73, 73, 73);
-  text-align: right;
-  color: #ffffff;
-  font-size: 1.5rem;
-  font-family: Arial, Helvetica, sans-serif;
+  width: 132px;
+  /* 60 + 60 + 12 gap */
+  border-radius: 30px;
+  background: var(--mos-red);
 }
