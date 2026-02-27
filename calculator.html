@@ -1,66 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 
 <head>
-  <title>Калькулятор</title>
-
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Городской Транспорт</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div>
 
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <div class="logo-area">
+                    <div class="brand-name">
+                        <a href="index.html">Городской Транспорт</a>
+                    </div>
+                </div>
 
-    <div id="result" class="result">
-      0
-    </div>
+                <!-- НАВИГАЦИЯ -->
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="calculator.html" class="nav-link active">Калькулятор</a></li>
+                        <li><a href="author.html" class="nav-link">Об авторе</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
 
+    <main>
+        <div class="container">
+            <div>
+                <div class="calc-wrapper">
+                    <div id="result" class="result calc-row">
+                        0
+                    </div>
 
-    <div>
+                    <div class="calc-row">
+                        <button id="btn_op_clear" class="my-btn secondary">C</button>
+                        <button id="btn_op_sign" class="my-btn secondary">+/-</button>
+                        <button id="btn_op_percent" class="my-btn secondary">%</button>
+                        <button id="btn_op_div" class="my-btn primary">/</button>
+                    </div>
 
-      <div>
-        <button id="btn_op_clear" class="my-btn secondary">C</button>
-        <button id="btn_op_sign" class="my-btn secondary">+/-</button>
-        <button id="btn_op_percent" class="my-btn secondary">%</button>
-        <button id="btn_op_div" class="my-btn primary">/</button>
-      </div>
+                    <div class="calc-row">
+                        <button id="btn_digit_7" class="my-btn">7</button>
+                        <button id="btn_digit_8" class="my-btn">8</button>
+                        <button id="btn_digit_9" class="my-btn">9</button>
+                        <button id="btn_op_mult" class="my-btn primary">x</button>
+                    </div>
 
-      <div>
-        <button id="btn_digit_7" class="my-btn">7</button>
-        <button id="btn_digit_8" class="my-btn">8</button>
-        <button id="btn_digit_9" class="my-btn">9</button>
-        <button id="btn_op_mult" class="my-btn primary">x</button>
-      </div>
+                    <div class="calc-row">
+                        <button id="btn_digit_4" class="my-btn">4</button>
+                        <button id="btn_digit_5" class="my-btn">5</button>
+                        <button id="btn_digit_6" class="my-btn">6</button>
+                        <button id="btn_op_minus" class="my-btn primary">-</button>
+                    </div>
 
-      <div>
-        <button id="btn_digit_4" class="my-btn">4</button>
-        <button id="btn_digit_5" class="my-btn">5</button>
-        <button id="btn_digit_6" class="my-btn">6</button>
-        <button id="btn_op_minus" class="my-btn primary">-</button>
-      </div>
+                    <div class="calc-row">
+                        <button id="btn_digit_1" class="my-btn">1</button>
+                        <button id="btn_digit_2" class="my-btn">2</button>
+                        <button id="btn_digit_3" class="my-btn">3</button>
+                        <button id="btn_op_plus" class="my-btn primary">+</button>
+                    </div>
 
-      <div>
-        <button id="btn_digit_1" class="my-btn">1</button>
-        <button id="btn_digit_2" class="my-btn">2</button>
-        <button id="btn_digit_3" class="my-btn">3</button>
-        <button id="btn_op_plus" class="my-btn primary">+</button>
-      </div>
+                    <div class="calc-row">
+                        <button id="btn_digit_0" class="my-btn">0</button>
+                        <button id="btn_digit_dot" class="my-btn">.</button>
+                        <button id="btn_op_equal" class="my-btn primary execute">=</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-      <div>
-        <button id="btn_digit_0" class="my-btn">0</button>
-        <button id="btn_digit_dot" class="my-btn">.</button>
-        <button id="btn_op_equal" class="my-btn primary execute">=</button>
-      </div>
-    </div>
-  </div>
+    <footer>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="copyright">© 2026 Городской Транспорт</div>
+            </div>
+        </div>
+    </footer>
 
-  <details> <!-- Добавим немного отступа сверху и выравнивание -->
-    <summary>Автор</summary> <!-- Видимый заголовок -->
-    <p>
-      <b>ФИО:</b> Пингин Егор Витальевич<br>  <!-- ВСТАВЬТЕ СВОИ ДАННЫЕ -->
-      <b>Группа:</b> ИУ5-46Б                 <!-- ВСТАВЬТЕ СВОИ ДАННЫЕ -->
-    </p>
-    <!-- Здесь можно добавить и другую информацию, если нужно -->
-  </details>
 </body>
+
 </html>
