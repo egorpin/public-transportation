@@ -11,13 +11,17 @@ window.onload = function(){
     function onDigitButtonClicked(digit) {
         if (!selectedOperation) {
             if ((digit != '.') || (digit == '.' && !a.includes(digit))) {
-                a += digit;
+                if (a.length < 9){
+                    a += digit;
+                }
             }
             outputElement.innerHTML = a;
         }
         else {
             if ((digit != '.') || (digit == '.' && !b.includes(digit))) {
-                b += digit;
+                if (b.length < 9){
+                    b += digit;
+                }
                 outputElement.innerHTML = b;
             }
         }
@@ -85,6 +89,9 @@ window.onload = function(){
         }
 
         a = expressionResult.toString()
+        if (a.length > 10){
+            a = expressionResult.toExponential(3);
+        }
         b = ''
         selectedOperation = null
 
