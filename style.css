@@ -256,8 +256,6 @@ footer {
 
 /* Кнопка "Равно" (execute) - широкая */
 .my-btn.execute {
-  width: 132px;
-  /* 60 + 60 + 12 gap */
   border-radius: 30px;
   background: var(--mos-red);
 }
