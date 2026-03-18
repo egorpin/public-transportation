@@ -1,24 +1,30 @@
 :root {
-  --mos-red: #CE2A31;
-  --mos-dark: #1F1F1F;
-  --mos-gray: #787878;
-  --bg-color: #FFFFFF;
-  --mos-border: #E5E5E5;
+  --mos-red: #D9232E;
+  /* Официальный красный */
+  --mos-red-hover: #b81b24;
+  --mos-black: #262626;
+  --mos-dark-footer: #1F1F1F;
+  --mos-gray-text: #8E8E8E;
+  --bg-body: #F3F3F5;
+  /* Светло-серый фон портала */
+  --bg-card: #FFFFFF;
+  --border-color: #E6E6E6;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
   font-family: 'Roboto', Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--mos-dark);
+  background-color: var(--bg-body);
+  color: var(--mos-black);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -32,7 +38,8 @@ ul {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1160px;
+  /* Стандартная ширина контента мос.ру */
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -40,152 +47,327 @@ ul {
 /* --- HEADER --- */
 header {
   background: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  position: relative;
-  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-/* Основной хедер */
 .main-header {
-  padding: 15px 0;
+  height: 80px;
+  display: flex;
+  align-items: center;
 }
 
 .main-header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* Разносит лого и меню по краям */
+  width: 100%;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  fill: var(--mos-red);
 }
 
 .brand-name {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.1;
-  text-transform: uppercase;
+  color: var(--mos-black);
+  letter-spacing: -0.5px;
 }
 
-/* Меню */
-.nav-menu ul {
+.brand-subtitle {
+  font-size: 12px;
+  color: var(--mos-gray-text);
+  font-weight: 400;
+  display: block;
+  margin-top: 2px;
+}
+
+/* Скрываем чекбокс */
+.menu-checkbox {
+  display: none;
+}
+
+/* Кнопка бургера */
+.burger-btn {
   display: flex;
-  gap: 30px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1001;
 }
 
-.nav-link {
-  font-size: 15px;
-  font-weight: 500;
-  position: relative;
-  padding: 10px 0;
-  color: var(--mos-dark);
-}
-
-/* Стиль при наведении и активной ссылке */
-.nav-link:hover,
-.nav-link.active {
-  color: var(--mos-red);
-}
-
-/* Красная полоска снизу */
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--mos-red);
-  transition: width 0.3s;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
+.burger-btn span {
+  display: block;
+  height: 3px;
   width: 100%;
+  background-color: var(--mos-black);
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+/* Стили бокового меню */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -320px; /* Полностью скрыто слева */
+  width: 300px;
+  height: 100vh;
+  background: #fff;
+  z-index: 1100;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu-header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+}
+
+.side-menu h4 {
+  margin: 0;
+  color: var(--mos-red);
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.close-btn {
+  font-size: 30px;
+  cursor: pointer;
+  line-height: 1;
+}
+/* Боковое меню */
+.burger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -320px; /* Скрыто за правой границей экрана */
+  width: 300px;
+  height: 100vh;
+  background: #fff;
+  z-index: 1100;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.1); /* Тень слева */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px;
+}
+
+.side-menu ul {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Ссылкам в боковом меню можно добавить выравнивание по правому краю, если нужно */
+.side-menu .nav-link {
+  text-align: right;
+}
+
+.side-menu .nav-link.active::after {
+  display: none;
+}
+
+.side-menu .nav-link.active {
+  color: var(--mos-red);
+  font-weight: 700;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+.menu-checkbox:checked ~ .side-menu {
+  transform: translateX(-320px); /* Сдвигаем влево внутрь экрана */
+}
+
+.menu-checkbox:checked ~ .menu-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-checkbox:checked ~ .burger-btn span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+.menu-checkbox:checked ~ .burger-btn span:nth-child(2) {
+  opacity: 0;
+}
+.menu-checkbox:checked ~ .burger-btn span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
 }
 
 /* --- CONTENT --- */
 main {
   flex: 1;
-  padding: 60px 0;
-  background-color: #f8f9fa;
+  padding: 40px 0;
 }
 
-.page-title {
+/* Специальный класс для главной, чтобы убрать отступы для видео */
+main.main-landing {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--mos-black);
+}
+
+.content-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 30px;
+}
+
+/* --- HERO VIDEO SECTION --- */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 600px; /* Высота баннера */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: #fff;
+}
+
+.hero-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Видео заполняет весь блок */
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* Затемнение видео для читаемости текста */
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.hero-title {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 700;
   margin-bottom: 20px;
-  font-size: 32px;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 600px;
   font-weight: 300;
 }
 
-.content-box {
-  background: #fff;
-  border: 1px solid var(--mos-border);
-  border-radius: 8px;
-  padding: 40px;
-  min-height: 300px;
+.hero-btn {
+  display: inline-block;
+  background: var(--mos-red);
+  color: white;
+  padding: 15px 40px;
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 18px;
+  transition: background 0.3s, transform 0.2s;
+  border: none;
+  cursor: pointer;
 }
 
-/* --- FOOTER --- */
-footer {
-  background-color: #fff;
-  border-top: 1px solid var(--mos-border);
-  font-size: 14px;
+.hero-btn:hover {
+  background: var(--mos-red-hover);
+  transform: translateY(-2px);
 }
 
-.footer-bottom {
-  background-color: #F9F9F9;
-  padding: 25px 0;
-  border-top: 1px solid var(--mos-border);
-}
-
-.footer-bottom .container {
+/* --- CALCULATOR --- */
+.calc-section {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
 }
 
-.copyright {
-  color: #999;
-  font-size: 12px;
-  max-width: 400px;
-}
-
-
-/* Контейнер калькулятора (карточка) */
 .calc-wrapper {
-  background-color: #FFFFFF;
-  width: fit-content;
+  background-color: #fff;
+  width: 340px;
   padding: 25px;
   border-radius: 24px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid #E5E5E5;
-  margin: 0 auto;
-  /* Центрирование */
-  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Экран результата */
 .result {
-  height: 70px;
-  /* Чуть выше */
-  margin-bottom: 20px;
+  height: 80px;
+  margin-bottom: 25px;
   padding: 0 20px;
-  background: var(--mos-dark);
-  /* Темный фон как на табло */
-  border-radius: 12px;
+  background: var(--mos-black);
+  border-radius: 16px;
   text-align: right;
   color: #FFFFFF;
-  font-size: 2.5rem;
-  /* Крупнее шрифт */
+  font-size: 3rem;
   font-weight: 300;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  box-sizing: border-box;
+  overflow: hidden;
 }
 
-/* Сетка кнопок (используем Flex для рядов) */
 .calc-row {
   display: flex;
-  gap: 12px;
-  /* Отступы между кнопками */
+  justify-content: space-between;
   margin-bottom: 12px;
 }
 
@@ -193,71 +375,150 @@ footer {
   margin-bottom: 0;
 }
 
-/* Базовая кнопка (Цифры) */
 .my-btn {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
-  /* Круглые */
-  border: 1px solid transparent;
-  background: var(--mos-light-gray);
-  /* Светло-серый фон */
-  color: var(--mos-dark);
-  font-size: 1.4rem;
+  border: none;
+  background: #F0F0F0;
+  color: var(--mos-black);
+  font-size: 1.5rem;
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   user-select: none;
-  outline: none;
 }
 
-/* Ховер эффект для цифр */
 .my-btn:hover {
-  background: #E0E0E0;
-  transform: translateY(-1px);
+  background: #E5E5E5;
 }
 
 .my-btn:active {
-  background: #D0D0D0;
-  transform: translateY(1px);
+  transform: scale(0.95);
 }
 
-/* Операторы ( / x - + = ) - Красные */
 .my-btn.primary {
   background: var(--mos-red);
   color: #FFFFFF;
-  font-weight: 400;
-  font-size: 1.6rem;
 }
 
 .my-btn.primary:hover {
-  background: #B02025;
-  /* Чуть темнее красный */
-  box-shadow: 0 4px 10px rgba(206, 42, 49, 0.3);
+  background: var(--mos-red-hover);
 }
 
-/* Вспомогательные ( C +/- % ) - Темно-серые */
 .my-btn.secondary {
-  background: #FFFFFF;
-  border: 1px solid #D0D0D0;
-  color: var(--mos-dark);
-  font-size: 1.1rem;
+  background: #D4D4D2;
+  color: #000;
 }
 
 .my-btn.secondary:hover {
-  background: var(--mos-dark);
-  color: #FFFFFF;
-  border-color: var(--mos-dark);
+  background: #C4C4C2;
 }
 
-/* Кнопка "Равно" (execute) - широкая */
 .my-btn.execute {
-  width: 132px;
-  /* 60 + 60 + 12 gap */
-  border-radius: 30px;
   background: var(--mos-red);
+  color: white;
+}
+
+/* --- AUTHOR PAGE --- */
+.author-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+details {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+details[open] {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+summary {
+  padding: 20px;
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: '+';
+  font-size: 24px;
+  color: var(--mos-red);
+  font-weight: 300;
+}
+
+details[open] summary::after {
+  content: '−';
+}
+
+details p {
+  padding: 0 20px 20px 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 15px;
+}
+
+/* --- FOOTER --- */
+footer {
+  background-color: var(--mos-dark-footer);
+  color: #fff;
+  padding: 50px 0 20px;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-col h4 {
+  color: #787878;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col a {
+  color: #fff;
+  font-weight: 400;
+}
+
+.footer-col a:hover {
+  color: var(--mos-red);
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #787878;
 }
