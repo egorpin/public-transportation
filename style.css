@@ -1,12 +1,10 @@
 :root {
   --mos-red: #D9232E;
-  /* Официальный красный */
   --mos-red-hover: #b81b24;
   --mos-black: #262626;
   --mos-dark-footer: #1F1F1F;
   --mos-gray-text: #8E8E8E;
   --bg-body: #F3F3F5;
-  /* Светло-серый фон портала */
   --bg-card: #FFFFFF;
   --border-color: #E6E6E6;
 }
@@ -39,12 +37,10 @@ ul {
 
 .container {
   max-width: 1160px;
-  /* Стандартная ширина контента мос.ру */
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* --- HEADER --- */
 header {
   background: #fff;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -94,12 +90,12 @@ header {
   margin-top: 2px;
 }
 
-/* Скрываем чекбокс */
+
 .menu-checkbox {
   display: none;
 }
 
-/* Кнопка бургера */
+
 .burger-btn {
   display: flex;
   flex-direction: column;
@@ -119,11 +115,11 @@ header {
   transition: 0.3s;
 }
 
-/* Стили бокового меню */
+
 .side-menu {
   position: fixed;
   top: 0;
-  right: -320px; /* Полностью скрыто слева */
+  right: -320px;
   width: 300px;
   height: 100vh;
   background: #fff;
@@ -157,7 +153,7 @@ header {
   cursor: pointer;
   line-height: 1;
 }
-/* Боковое меню */
+
 .burger-btn {
   display: flex;
   flex-direction: column;
@@ -171,12 +167,12 @@ header {
 .side-menu {
   position: fixed;
   top: 0;
-  right: -320px; /* Скрыто за правой границей экрана */
+  right: -320px; 
   width: 300px;
   height: 100vh;
   background: #fff;
   z-index: 1100;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.1); /* Тень слева */
+  box-shadow: -5px 0 15px rgba(0,0,0,0.1); 
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 20px;
 }
@@ -188,7 +184,7 @@ header {
   gap: 10px;
 }
 
-/* Ссылкам в боковом меню можно добавить выравнивание по правому краю, если нужно */
+
 .side-menu .nav-link {
   text-align: right;
 }
@@ -216,7 +212,7 @@ header {
 }
 
 .menu-checkbox:checked ~ .side-menu {
-  transform: translateX(-320px); /* Сдвигаем влево внутрь экрана */
+  transform: translateX(-320px); 
 }
 
 .menu-checkbox:checked ~ .menu-overlay {
@@ -234,13 +230,13 @@ header {
   transform: translateY(-8.5px) rotate(-45deg);
 }
 
-/* --- CONTENT --- */
+
 main {
   flex: 1;
   padding: 40px 0;
 }
 
-/* Специальный класс для главной, чтобы убрать отступы для видео */
+
 main.main-landing {
   padding: 0;
   display: flex;
@@ -262,11 +258,11 @@ h1 {
   margin-bottom: 30px;
 }
 
-/* --- HERO VIDEO SECTION --- */
+
 .hero-section {
   position: relative;
   width: 100%;
-  height: 600px; /* Высота баннера */
+  height: 600px; 
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -280,7 +276,6 @@ h1 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Видео заполняет весь блок */
   z-index: 1;
 }
 
@@ -291,7 +286,6 @@ h1 {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  /* Затемнение видео для читаемости текста */
   z-index: 2;
 }
 
@@ -335,7 +329,6 @@ h1 {
   transform: translateY(-2px);
 }
 
-/* --- CALCULATOR --- */
 .calc-section {
   display: flex;
   justify-content: center;
@@ -424,7 +417,6 @@ h1 {
   color: white;
 }
 
-/* --- AUTHOR PAGE --- */
 .author-card {
   max-width: 600px;
   margin: 0 auto;
@@ -477,7 +469,6 @@ details p {
   padding-top: 15px;
 }
 
-/* --- FOOTER --- */
 footer {
   background-color: var(--mos-dark-footer);
   color: #fff;
