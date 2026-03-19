@@ -1,5 +1,5 @@
 window.onload = function(){
-    let a = ''
+    let a = ""
     let b = ''
     let expressionResult = ''
     let selectedOperation = null
@@ -9,9 +9,18 @@ window.onload = function(){
     const digitButtons = document.querySelectorAll('[id ^= "btn_digit_"]')
 
     function onDigitButtonClicked(digit) {
+        if (a === 'Nan' || a === 'Infinity') {
+            return;
+        }
         if (!selectedOperation) {
             if ((digit != '.') || (digit == '.' && !a.includes(digit))) {
-                if (a.length < 9){
+                if (a === "0" && digit === "0"){
+                    return;
+                }
+                if (a.length == 0 && digit === '.'){
+                    a = "0."
+                }
+                else if (a.length < 9){
                     a += digit;
                 }
             }
