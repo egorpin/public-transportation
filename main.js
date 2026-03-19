@@ -4,14 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Функция для отрисовки одной карточки
     function createCard(item) {
         return `
-            <div class="transport-card">
+            <article class="transport-card">
                 <img src="${item.img}" alt="${item.title}" class="card-img">
                 <div class="card-content">
                     <h3>${item.title}</h3>
                     <p>${item.desc}</p>
-                    <button class="my-btn primary card-btn" onclick="alert('Вы выбрали: ${item.title}')">Подробнее</button>
+                    <button class="my-btn primary card-btn" onclick="alert('Вы выбрали: ${item.title}')">
+                        Подробнее
+                    </button>
                 </div>
-            </div>
+            </article>
         `;
     }
 

@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Московский Транспорт</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <div class="main-header">
             <div class="container">
                 <div class="logo-area">
                     <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C28 10 10 28 10 50 C10 72 28 90 50 90 C72 90 90 72 90 50" fill="none" stroke="#D9232E" stroke-width="8" />
-                        <path d="M50 25 C36 25 25 36 25 50 C25 64 36 75 50 75" fill="none" stroke="#D9232E" stroke-width="8" />
+                        <path d="M50 10 C28 10 10 28 10 50 C10 72 28 90 50 90 C72 90 90 72 90 50" fill="none"
+                            stroke="#D9232E" stroke-width="8" />
+                        <path d="M50 25 C36 25 25 36 25 50 C25 64 36 75 50 75" fill="none" stroke="#D9232E"
+                            stroke-width="8" />
                         <circle cx="50" cy="50" r="8" fill="#D9232E" />
                     </svg>
                     <div class="brand-name">
@@ -46,13 +50,23 @@
     <main class="main-landing">
         <section class="hero-section">
             <video class="hero-bg-video" autoplay muted loop playsinline>
-                <source src="/media/small-vecteezy_timelapse-of-road-traffic-or-public-transport-rush-hour_29873425_small.mp4" type="video/mp4">
+                <source
+                    src="/media/small-vecteezy_timelapse-of-road-traffic-or-public-transport-rush-hour_29873425_small.mp4"
+                    type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
             <div class="container hero-content">
                 <h1 class="hero-title">Движение — это жизнь<br>города</h1>
-                <p class="hero-subtitle">Единый транспортный портал предоставляет актуальную информацию о работе транспорта Москвы.</p>
+                <p class="hero-subtitle">Единый транспортный портал предоставляет актуальную информацию о работе
+                    транспорта Москвы.</p>
                 <a href="calculator.html" class="hero-btn">Рассчитать поездку</a>
+            </div>
+        </section>
+        <section class="transport-section">
+            <div class="container">
+                <h1 class="page-title">Наш Транспорт</h1>
+                <div id="card-container" class="card-grid">
+                </div>
             </div>
         </section>
     </main>
@@ -60,13 +74,38 @@
     <footer>
         <div class="container">
             <div class="footer-columns">
-                <div class="footer-col"><h4>Пассажирам</h4><ul><li><a href="#">Расписание</a></li><li><a href="#">Тарифы</a></li></ul></div>
-                <div class="footer-col"><h4>Организации</h4><ul><li><a href="#">Дептранс</a></li><li><a href="#">Метрополитен</a></li></ul></div>
-                <div class="footer-col"><h4>Проекты</h4><ul><li><a href="#">МЦД</a></li><li><a href="#">Электробус</a></li></ul></div>
-                <div class="footer-col"><h4>Связь</h4><ul><li><a href="#">Контакты</a></li></ul></div>
+                <div class="footer-col">
+                    <h4>Пассажирам</h4>
+                    <ul>
+                        <li><a href="#">Расписание</a></li>
+                        <li><a href="#">Тарифы</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Организации</h4>
+                    <ul>
+                        <li><a href="#">Дептранс</a></li>
+                        <li><a href="#">Метрополитен</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Проекты</h4>
+                    <ul>
+                        <li><a href="#">МЦД</a></li>
+                        <li><a href="#">Электробус</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Связь</h4>
+                    <ul>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="footer-bottom">© 2026 Департамент транспорта Москвы</div>
         </div>
     </footer>
+    <script src="main.js"></script>
 </body>
+
 </html>
