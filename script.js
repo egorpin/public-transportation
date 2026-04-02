@@ -65,12 +65,27 @@ window.onload = function(){
         selectedOperation = '^';
     }
 
+    document.getElementById("btn_op_sign").onclick = function() {
+        if (a === '' || isNaN(parseFloat(a))) return;
+
+        a = String(-parseFloat(a));
+        outputElement.innerHTML = a;
+    }
+
+    document.getElementById("btn_op_percent").onclick = function() {
+        if (a === '' || isNaN(parseFloat(a))) return;
+
+        a /= 100;
+        outputElement.innerHTML = a;
+    }
+
     document.getElementById("btn_op_clear").onclick = function() {
         a = ''
         b = ''
         selectedOperation = ''
         expressionResult = ''
         outputElement.innerHTML = 0
+        outputElement.style.color = 'white';
     }
 
     document.getElementById("btn_op_equal").onclick = function() {
@@ -97,10 +112,18 @@ window.onload = function(){
                 break;
         }
 
+
         a = expressionResult.toString()
+        hexa = (expressionResult % 16777215).toString(16);
+        console.log(hexa);
+
+        outputElement.style.color = '#' + hexa;
+        console.log(outputElement.style.color);
+
         if (a.length > 10){
             a = expressionResult.toExponential(3);
         }
+
         b = ''
         selectedOperation = null
 
