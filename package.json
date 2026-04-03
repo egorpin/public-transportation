@@ -1,8 +1,8 @@
 {
   "name": "public-transportation",
   "version": "1.0.0",
-  "description": "",
-  "main": "script.js",
+  "description": "Московский транспортный портал",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,12 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/egorpin/public-transportation/issues"
-  },
-  "homepage": "https://github.com/egorpin/public-transportation#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "bootstrap": "^5.3.0"
   }
 }
