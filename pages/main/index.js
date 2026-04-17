@@ -7,6 +7,23 @@ import { AuthorPage } from "../author/index.js"
 export class MainPage {
     constructor(parent) {
         this.parent = parent;
+        this.randomCardCount = 0; // счётчик
+    }
+
+    addRandomCard() {
+        this.randomCardCount++;
+        const source = transportData[Math.floor(Math.random() * transportData.length)];
+        const randomItem = {
+            id: `random-${this.randomCardCount}`,
+            title: `Случайная карточка ${this.randomCardCount}`,
+            type: source.type,
+            desc: source.desc,
+            img: source.img,
+            details: source.details,
+        };
+        const cardContainer = document.getElementById('card-container');
+        const card = new ProductCardComponent(cardContainer);
+        card.render(randomItem, (data) => this.clickCard(data));
     }
 
     get pageRoot() {
@@ -38,6 +55,11 @@ export class MainPage {
                                 <p class="section-subtitle">Нажмите на карточку, чтобы узнать подробнее</p>
                             </div>
                             <div id="card-container" class="card-grid"></div>
+                            <div class="section-header" style="margin-top: 2rem;">
+                            <button id="add-random-card-btn" class="hero-btn" style="display:inline-block;">
+                                + Случайная карточка
+                            </button>
+                        </div>
                         </div>
                     </section>
                 </main>
@@ -107,5 +129,6 @@ export class MainPage {
             const card = new ProductCardComponent(cardContainer);
             card.render(item, (data) => this.clickCard(data));
         });
+        document.getElementById('add-random-card-btn').addEventListener('click', () => this.addRandomCard());
     }
 }
