@@ -13,11 +13,20 @@ export class ProductComponent {
             `).join('')
             : '';
 
+        const modelHTML = data.model
+            ? `<div class="model-viewer-container" id="model-viewer-area"></div>`
+            : '';
+
+        const imgHTML = data.img
+            ? `<div class="modal-img-wrap">
+                    <img src="${data.img}" alt="${data.title}" class="modal-img">
+                    <div class="modal-img-gradient"></div>
+               </div>`
+            : '';
+
         return `
-            <div class="modal-img-wrap">
-                <img src="${data.img}" alt="${data.title}" class="modal-img">
-                <div class="modal-img-gradient"></div>
-            </div>
+            ${modelHTML}
+            ${imgHTML}
             <div class="modal-body">
                 <h2 class="modal-title">${data.title}</h2>
                 <p class="modal-desc">${data.desc}</p>

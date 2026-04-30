@@ -1,11 +1,13 @@
 import { BackButtonComponent } from "../../components/back-button/index.js";
 import { ProductComponent } from "../../components/product/index.js";
 import { MainPage } from "../main/index.js";
+import { ThreeDViewerComponent } from "../../components/three-d-viewer/index.js";
 
 export class ProductPage {
     constructor(parent, data) {
         this.parent = parent;
         this.data = data;
+        this.viewer = null;
     }
 
     get pageRoot() {
@@ -26,8 +28,21 @@ export class ProductPage {
     }
 
     clickBack() {
+        if (this.viewer) {
+            this.viewer.dispose();
+            this.viewer = null;
+        }
         const mainPage = new MainPage(this.parent);
         mainPage.render();
+    }
+
+    loadModel() {
+        const viewerArea = document.getElementById('model-viewer-area');
+        if (!viewerArea || !this.data.model) return;
+
+        this.viewer = new ThreeDViewerComponent(viewerArea, 560, 350);
+        this.viewer.init(viewerArea);
+        this.viewer.loadModel('glbmodels/' + this.data.model);
     }
 
     render() {
@@ -41,5 +56,7 @@ export class ProductPage {
         const detailArea = document.getElementById('product-detail-area');
         const product = new ProductComponent(detailArea);
         product.render(this.data);
+
+        this.loadModel();
     }
 }

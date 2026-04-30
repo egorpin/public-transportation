@@ -3,6 +3,7 @@ export const transportData = [
         id: 1,
         title: "Трамвай Витязь-М",
         type: "Трамвай",
+        model: "Tram.glb",
         desc: "Тихий и комфортный трамвай нового поколения с низким полом.",
         img: "https://upload.wikimedia.org/wikipedia/commons/1/10/71-931m_in_curve.jpg",
         details: [
