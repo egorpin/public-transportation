@@ -7,47 +7,47 @@ const init = (filePath) => {
 };
 
 const findAll = (type) => {
-    const stocks = fileService.readData(dataFilePath);
+    const transports = fileService.readData(dataFilePath);
     if (type) {
-        return stocks.filter(stock =>
+        return transports.filter(stock =>
             stock.type.toLowerCase().includes(type.toLowerCase())
         );
     }
-    return stocks;
+    return transports;
 };
 
 const findOne = (id) => {
-    const stocks = fileService.readData(dataFilePath);
-    return stocks.find(stock => stock.id === id);
+    const transports = fileService.readData(dataFilePath);
+    return transports.find(stock => stock.id === id);
 };
 
 const create = (stockData) => {
-    const stocks = fileService.readData(dataFilePath);
-    const newId = stocks.length > 0
-        ? Math.max(...stocks.map(s => s.id)) + 1
+    const transports = fileService.readData(dataFilePath);
+    const newId = transports.length > 0
+        ? Math.max(...transports.map(s => s.id)) + 1
         : 1;
     const newStock = { id: newId, ...stockData };
-    stocks.push(newStock);
-    fileService.writeData(dataFilePath, stocks);
+    transports.push(newStock);
+    fileService.writeData(dataFilePath, transports);
     return newStock;
 };
 
 const update = (id, stockData) => {
-    const stocks = fileService.readData(dataFilePath);
-    const index = stocks.findIndex(s => s.id === id);
+    const transports = fileService.readData(dataFilePath);
+    const index = transports.findIndex(s => s.id === id);
     if (index === -1) return null;
-    stocks[index] = { ...stocks[index], ...stockData };
-    fileService.writeData(dataFilePath, stocks);
-    return stocks[index];
+    transports[index] = { ...transports[index], ...stockData };
+    fileService.writeData(dataFilePath, transports);
+    return transports[index];
 };
 
 const remove = (id) => {
-    const stocks = fileService.readData(dataFilePath);
-    const filteredStocks = stocks.filter(s => s.id !== id);
-    if (filteredStocks.length === stocks.length) {
+    const transports = fileService.readData(dataFilePath);
+    const filteredtransports = transports.filter(s => s.id !== id);
+    if (filteredtransports.length === transports.length) {
         return false;
     }
-    fileService.writeData(dataFilePath, filteredStocks);
+    fileService.writeData(dataFilePath, filteredtransports);
     return true;
 };
 
