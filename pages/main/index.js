@@ -1,29 +1,13 @@
 import { ProductCardComponent } from "../../components/product-card/index.js";
-import { transportData } from "./data.js"
-import { ProductPage } from "../product/index.js"
-import { CalculatorPage } from "../calculator/index.js"
-import { AuthorPage } from "../author/index.js"
+import { ProductPage } from "../product/index.js";
+import { CalculatorPage } from "../calculator/index.js";
+import { AuthorPage } from "../author/index.js";
+import { ajax } from "../../modules/ajax.js";
+import { transportUrls } from "../../modules/transportUrls.js";
 
 export class MainPage {
     constructor(parent) {
         this.parent = parent;
-        this.randomCardCount = 0; // счётчик
-    }
-
-    addRandomCard() {
-        this.randomCardCount++;
-        const source = transportData[Math.floor(Math.random() * transportData.length)];
-        const randomItem = {
-            id: `random-${this.randomCardCount}`,
-            title: `Случайная карточка ${this.randomCardCount}`,
-            type: source.type,
-            desc: source.desc,
-            img: source.img,
-            details: source.details,
-        };
-        const cardContainer = document.getElementById('card-container');
-        const card = new ProductCardComponent(cardContainer);
-        card.render(randomItem, (data) => this.clickCard(data));
     }
 
     get pageRoot() {
@@ -56,10 +40,10 @@ export class MainPage {
                             </div>
                             <div id="card-container" class="card-grid"></div>
                             <div class="section-header" style="margin-top: 2rem;">
-                            <button id="add-random-card-btn" class="hero-btn" style="display:inline-block;">
-                                + Случайная карточка
-                            </button>
-                        </div>
+                                <button id="add-random-card-btn" class="hero-btn" style="display:inline-block;">
+                                    + Добавить карточку
+                                </button>
+                            </div>
                         </div>
                     </section>
                 </main>
@@ -117,6 +101,26 @@ export class MainPage {
         authorPage.render();
     }
 
+    clickAddCard() {
+        window.pageNavigation.goCreate();
+    }
+
+    renderData(items) {
+        const cardContainer = document.getElementById('card-container');
+        items.forEach(item => {
+            const card = new ProductCardComponent(cardContainer);
+            card.render(item, (data) => this.clickCard(data));
+        });
+    }
+
+    getData() {
+        ajax.get(transportUrls.getTransport(), (data, status) => {
+            if (status === 200 && data) {
+                this.renderData(data);
+            }
+        });
+    }
+
     render() {
         this.parent.innerHTML = '';
         this.parent.insertAdjacentHTML('beforeend', this.getHTML());
@@ -124,11 +128,7 @@ export class MainPage {
         document.getElementById('calculator-btn').addEventListener('click', () => this.clickCalc());
         document.getElementById('nav-calc').addEventListener('click', () => this.clickCalc());
         document.getElementById('nav-author').addEventListener('click', () => this.clickAuthor());
-        const cardContainer = document.getElementById('card-container');
-        transportData.forEach(item => {
-            const card = new ProductCardComponent(cardContainer);
-            card.render(item, (data) => this.clickCard(data));
-        });
-        document.getElementById('add-random-card-btn').addEventListener('click', () => this.addRandomCard());
+        document.getElementById('add-random-card-btn').addEventListener('click', () => this.clickAddCard());
+        this.getData();
     }
 }
