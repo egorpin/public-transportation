@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 export class ThreeDViewerComponent {
     constructor(parent, width = 300, height = 200) {
@@ -11,6 +12,7 @@ export class ThreeDViewerComponent {
         this.camera = null;
         this.model = null;
         this.animationId = null;
+        this.controls = null;
     }
 
     init(container) {
@@ -36,6 +38,13 @@ export class ThreeDViewerComponent {
 
         const gridHelper = new THREE.GridHelper(10, 10, 0xcccccc, 0xe0e0e0);
         this.scene.add(gridHelper);
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+
+        this.controls.enableDamping = true;
+        this.controls.dampingFactor = 0.05;
+        this.controls.screenSpacePanning = false;
+        this.controls.minDistance = 2;
+        this.controls.maxDistance = 10;
     }
 
     loadModel(modelPath) {
@@ -76,6 +85,9 @@ export class ThreeDViewerComponent {
 
     animate() {
         this.animationId = requestAnimationFrame(() => this.animate());
+        if (this.controls) {
+            this.controls.update();
+        }
         if (this.model) {
             this.model.rotation.y += 0.005;
         }
@@ -88,6 +100,9 @@ export class ThreeDViewerComponent {
         }
         if (this.renderer) {
             this.renderer.dispose();
+        }
+        if (this.controls) {
+            this.controls.dispose();
         }
     }
 }
