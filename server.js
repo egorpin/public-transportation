@@ -71,26 +71,11 @@ const transport = [
 let nextId = 5;
 
 function sendJSON(res, status, data) {
-    res.writeHead(status, {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type'
-    });
+    res.writeHead(status, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(data));
 }
 
 const server = http.createServer((req, res) => {
-    if (req.method === 'OPTIONS') {
-        res.writeHead(204, {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type'
-        });
-        res.end();
-        return;
-    }
-
     const url = new URL(req.url, `http://localhost:${PORT}`);
     const pathname = url.pathname;
 
