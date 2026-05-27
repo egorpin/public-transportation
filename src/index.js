@@ -18,6 +18,9 @@ app.use((req, res, next) => {
 
 app.use('/transport', transportRouter);
 
+// Serve built frontend bundle as static assets
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
 app.use((req, res) => {
     res.status(404).json({ error: 'Маршрут не найден' });
 });
