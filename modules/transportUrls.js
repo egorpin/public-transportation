@@ -1,6 +1,8 @@
 class TransportUrls {
     constructor() {
-        this.baseUrl = 'http://172.31.123.64:3000';
+        // empty string = same origin (Vite dev / production static)
+        // set explicit IP for direct node server usage without bundler
+        this.baseUrl = '';
     }
 
     getTransport() {

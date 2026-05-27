@@ -55,7 +55,7 @@ export class CreatePage {
         mainPage.render();
     }
 
-    submitForm(e) {
+    async submitForm(e) {
         e.preventDefault();
         const title = document.getElementById('field-title').value.trim();
         const type = document.getElementById('field-type').value.trim();
@@ -69,19 +69,20 @@ export class CreatePage {
         msg.textContent = 'Сохранение...';
 
         const data = { title, type, desc, img };
-        ajax.post(transportUrls.createTransport(), data, (response, status) => {
+        try {
+            const { status } = await ajax.post(transportUrls.createTransport(), data);
             if (status === 201 || status === 200) {
                 msg.style.color = '#16a34a';
                 msg.textContent = 'Карточка успешно добавлена!';
                 setTimeout(() => this.clickBack(), 1000);
-            } else if (status === 0) {
-                msg.style.color = '#D9232E';
-                msg.textContent = 'Ошибка сети: сервер недоступен. Убедитесь, что запущен `npm run start`.';
             } else {
                 msg.style.color = '#D9232E';
-                msg.textContent = `Ошибка (статус ${status}). Проверьте CORS Unblock в браузере.`;
+                msg.textContent = `Ошибка (статус ${status}).`;
             }
-        });
+        } catch (err) {
+            msg.style.color = '#D9232E';
+            msg.textContent = 'Ошибка сети: сервер недоступен.';
+        }
     }
 
     render() {

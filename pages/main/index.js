@@ -113,12 +113,13 @@ export class MainPage {
         });
     }
 
-    getData() {
-        ajax.get(transportUrls.getTransport(), (data, status) => {
-            if (status === 200 && data) {
-                this.renderData(data);
-            }
-        });
+    async getData() {
+        try {
+            const { data } = await ajax.get(transportUrls.getTransport());
+            this.renderData(data);
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     render() {

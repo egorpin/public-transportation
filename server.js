@@ -62,7 +62,7 @@ const transport = [
             { label: "Вместимость", value: "до 200 пассажиров" },
             { label: "Скорость", value: "до 35 км/ч" },
             { label: "Сезон", value: "Круглогодично" },
-            {label: "Оплата", value: "Тройка, карта" },
+            { label: "Оплата", value: "Тройка, карта" },
             { label: "Wi-Fi", value: "Есть" }
         ]
     }
@@ -75,10 +75,23 @@ function sendJSON(res, status, data) {
     res.end(JSON.stringify(data));
 }
 
+function serveStaticFile(res, filePath, contentType) {
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('Not found');
+            return;
+        }
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(data);
+    });
+}
+
 const server = http.createServer((req, res) => {
     const url = new URL(req.url, `http://localhost:${PORT}`);
     const pathname = url.pathname;
 
+    // API routes
     if (req.method === 'GET' && pathname === '/transport') {
         sendJSON(res, 200, transport);
         return;
@@ -119,8 +132,40 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not found');
+    // Static files
+    let staticPath;
+    let contentType;
+
+    if (pathname === '/' || pathname === '/index.html') {
+        staticPath = path.join(__dirname, 'public', 'index.html');
+        contentType = 'text/html; charset=utf-8';
+    } else if (pathname.startsWith('/assets/')) {
+        staticPath = path.join(__dirname, 'public', pathname);
+        const ext = path.extname(pathname);
+        contentType = {
+            '.js': 'application/javascript',
+            '.css': 'text/css',
+            '.png': 'image/png',
+            '.jpg': 'image/jpeg',
+            '.svg': 'image/svg+xml',
+            '.mp4': 'video/mp4',
+        }[ext] || 'application/octet-stream';
+    } else if (pathname.startsWith('/media/')) {
+        staticPath = path.join(__dirname, 'media', path.basename(pathname));
+        const ext = path.extname(pathname);
+        contentType = {
+            '.mp4': 'video/mp4',
+        }[ext] || 'application/octet-stream';
+    } else if (pathname.startsWith('/glbmodels/')) {
+        staticPath = path.join(__dirname, 'glbmodels', path.basename(pathname));
+        contentType = 'model/gltf-binary';
+    } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not found');
+        return;
+    }
+
+    serveStaticFile(res, staticPath, contentType);
 });
 
 server.listen(PORT, '0.0.0.0', () => {
