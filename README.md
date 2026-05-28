@@ -2,36 +2,68 @@
 
 Московский транспортный портал. ЛР5 — клиентская часть: XMLHttpRequest + API.
 
-## Структура
+## Оглавление
+
+- [Описание](#описание)
+- [Функциональность](#функциональность)
+- [Структура файлов](#структура-файлов)
+- [API](#api)
+- [Запуск](#запуск)
+
+## Описание
+
+Приложение представляет собой клиентскую часть Московского транспортного портала с взаимодействием с серверным API через XMLHttpRequest. Клиент получает данные о транспортных средствах с сервера и отображает их в виде интерактивных карточек.
+
+## Функциональность
+
+### Клиентское взаимодействие
+- Запрос данных через XMLHttpRequest
+- Получение списка карточек с сервера (GET)
+- Получение одной карточки по ID (GET)
+- Создание новой карточки через форму (POST)
+
+### Компоненты и страницы
+- **MainPage** — получение и отображение списка карточек
+- **ProductPage** — просмотр деталей отдельного транспорта
+- **CreatePage** — форма создания новой карточки
+- **CalculatorPage** — калькулятор тарифов
+
+### Сервер (in-memory)
+- Node.js HTTP-сервер для API карточек
+- In-memory хранилище данных
+- Поддержка базовых CRUD-операций
+
+## Структура файлов
 
 ```
-pages/              — страницы (MainPage, CreatePage, ProductPage, CalculatorPage)
-components/         — компоненты
-modules/
-  ajax.js          — XMLHttpRequest-обёртка (get, post)
-  transportUrls.js — эндпоинты API
-server.js           — Node.js HTTP-сервер (API карточек, in-memory)
+/index.html                 — корневой HTML
+/main.js                    — точка входа
+/style.css                  — стили приложения
+/server.js                  — Node.js HTTP-сервер (API карточек)
+/pages/                     — страницы
+  /main/index.js            — главная страница (GET /transport)
+  /product/index.js         — страница деталей
+  /create/index.js          — форма создания (POST /transport)
+  /calculator/index.js      — калькулятор тарифов
+/components/                — компоненты
+/modules/
+  /ajax.js                  — XMLHttpRequest-обёртка (get, post)
+  /transportUrls.js        — эндпоинты API и baseUrl
 ```
+
+## API
+
+| Метод  | Путь                  | Описание                 |
+|--------|-----------------------|--------------------------|
+| GET    | `/transport`          | Получить все карточки    |
+| GET    | `/transport/:id`     | Получить карточку по ID  |
+| POST   | `/transport`          | Создать новую карточку   |
 
 ## Запуск
 
 ```bash
+npm install bootstrap
 npm start        # сервер → http://localhost:3000
-# + CORS Unblock в браузере для dev
 ```
 
-## Ключевое
-
-- Запросы через `modules/ajax.js` (XMLHttpRequest)
-- `modules/transportUrls.js` хранит baseUrl и эндпоинты
-- `pages/main/index.js` — GET /transport, рендер карточек
-- `pages/create/index.js` — POST /transport, форма создания
-- `server.js` — in-memory хранилище, GET/POST
-
-## API
-
-| Метод | Путь           | Описание          |
-|-------|----------------|-------------------|
-| GET   | /transport     | Все карточки      |
-| GET   | /transport/:id | Одна карточка     |
-| POST  | /transport     | Создать карточку  |
+Для разработки потребуется расширение **CORS Unblock** в браузере для обхода политики CORS при запросах с localhost.
