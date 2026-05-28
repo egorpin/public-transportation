@@ -5,6 +5,7 @@ const transportController = require('../controllers/transportController');
 router.get('/', transportController.getAllTransports);
 router.get('/:id', transportController.getTransportById);
 router.post('/', transportController.createTransport);
+router.put('/', transportController.updateAll);
 router.patch('/:id', transportController.updateTransport);
 router.delete('/:id', transportController.deleteTransport);
 

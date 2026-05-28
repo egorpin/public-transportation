@@ -24,6 +24,17 @@ const createTransport = (req, res) => {
     res.status(201).json(newTransport);
 };
 
+const updateAll = (req, res) => {
+    req.body.forEach(obj => {
+         console.log(obj);
+         if (!obj.title || !obj.type || !obj.desc || !obj.img) {
+            return res.status(400).json({ error: 'Не все обязательные поля заполнены' });
+        }
+        transportService.create({ title: obj.title, type: obj.type, desc: obj.desc, img: obj.img});
+    });
+    res.status(201).json({status: 'Успех!'});
+};
+
 const updateTransport = (req, res) => {
     const id = parseInt(req.params.id);
     const updatedTransport = transportService.update(id, req.body);
@@ -47,5 +58,6 @@ module.exports = {
     getTransportById,
     createTransport,
     updateTransport,
-    deleteTransport
+    deleteTransport,
+    updateAll
 };
