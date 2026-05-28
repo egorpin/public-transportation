@@ -1,6 +1,6 @@
 class TransportUrls {
     constructor() {
-        this.baseUrl = 'http://172.31.123.64:3000';
+        this.baseUrl = 'http://localhost:3000';
     }
 
     getTransport() {
